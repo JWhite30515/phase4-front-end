@@ -1,17 +1,18 @@
 import * as React from 'react';
 
-import thunk from  'redux-thunk';
-import { render } from 'react-dom';
-
 import { Provider } from 'react-redux';
+import { render } from 'react-dom';
 import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
+import { ToastContainer } from 'react-toastify';
 
-import './css/index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import rootReducer from './redux/reducers/rootReducer';
-
 import { initialState } from './redux/state/RootState';
+
+import 'react-toastify/dist/ReactToastify.css';
+import './css/index.css';
 
 const store = createStore(rootReducer, initialState, applyMiddleware(thunk));
 
@@ -20,6 +21,7 @@ const rootEl = document.getElementById('root');
 render(
   (
     <Provider store={store}>
+      <ToastContainer />
       <App />
     </Provider>
   ),

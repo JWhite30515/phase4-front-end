@@ -18,3 +18,8 @@
   padding: 10px;
   border-radius: 25%;
 }
+
+.disabled {
+  cursor: not-allowed !important;
+  background-color: #88949a;
+}
