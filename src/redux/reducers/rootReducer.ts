@@ -2,6 +2,7 @@ import { combineReducers, AnyAction, Reducer } from 'redux';
 
 import IAccountState, { initialAccountState } from '../state/AccountState';
 import ICompanyState, { initialCompanyState } from '../state/CompanyState';
+import IMovieState, { initialMovieState } from '../state/MovieState';
 import ITheaterState, { initialTheaterState } from '../state/TheaterState';
 import IUserState, { initialUserState } from '../state/UserState';
 import IRootState from '../state/RootState';
@@ -18,6 +19,7 @@ const accountReducer: Reducer<IAccountState, AnyAction> = (
         ...state,
         user: action.user,
         userType: action.userType,
+        creditCards: action.creditCards,
         isAuthenticated: true,
       };
     case keys.AUTH_FAILURE:
@@ -39,6 +41,16 @@ const userReducer: Reducer<IUserState, AnyAction> = (
       return {
         ...state,
         users: action.users,
+      }
+    case keys.GET_THEATERS_SUCCESS:
+      return {
+        ...state,
+        theaters: action.theaters,
+      }
+    case keys.GET_VISITS_SUCCESS:
+      return {
+        ...state,
+        visits: action.visits,
       }
     default:
       return state;
@@ -80,11 +92,37 @@ const theaterReducer: Reducer<ITheaterState, AnyAction> = (
   }
 }
 
+const movieReducer: Reducer<IMovieState, AnyAction> = (
+  state = initialMovieState,
+  action
+): IMovieState => {
+  switch (action.type) {
+    case keys.GET_MOVIES_SUCCESS:
+      return {
+        ...state,
+        movies: action.movies,
+      }
+    case keys.GET_MOVIE_PLAYS_SUCCESS:
+      return {
+        ...state,
+        moviePlays: action.moviePlays,
+      }
+    case keys.GET_VIEW_HISTORY_SUCCESS:
+      return {
+        ...state,
+        views: action.views
+      }
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers<IRootState>({
   accountState: accountReducer,
   companyState: companyReducer,
   userState: userReducer,
   theaterState: theaterReducer,
+  movieState: movieReducer,
 });
 
 export default rootReducer;

@@ -10,6 +10,7 @@ import { ICustomerForm } from '../../components/registration/CustomerRegister';
 import { IManagerCustomerForm } from '../../components/registration/ManagerCustomerRegister';
 import { IManagerForm } from '../../components/registration/ManagerRegister';
 import { IUserForm } from '../../components/registration/UserRegister';
+import { ICreditCard } from '../state/UserState';
 
 export function login(loginForm: { username: string, password: string }) {
   return async (dispatch: any) => {
@@ -17,9 +18,13 @@ export function login(loginForm: { username: string, password: string }) {
       const body = await axios.post(api + '/users/login', loginForm);
       console.log(body);
 
-      if (body.data && body.data.user && body.data.type) {
+      if (body.data && body.data.user && body.data.type && body.data.creditCards) {
         t.info('Login successful');
-        dispatch(authSuccess(body.data.user, body.data.type));
+
+        const {
+          user, type, creditCards
+        } = body.data;
+        dispatch(authSuccess(user, type, creditCards));
       } else {
         t.error('Login failed');
         dispatch(authFailure())
@@ -82,11 +87,12 @@ export function registerManagerCustomer(managerCustomerForm: IManagerCustomerFor
   }
 }
 
-export function authSuccess(user: IUser, userType: UserType) {
+export function authSuccess(user: IUser, userType: UserType, creditCards: ICreditCard) {
   return {
     type: keys.AUTH_SUCCESS,
     userType,
     user,
+    creditCards,
   }
 }
 

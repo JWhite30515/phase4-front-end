@@ -33,6 +33,7 @@ export interface ITheater {
   thState: string;
   thStreet: string;
   thZipcode: string;
+  comName?: any;
 }
 
 export const initialCompanyState: ICompanyState = {

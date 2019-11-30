@@ -28,6 +28,7 @@ import CreateMovie from './components/movies/CreateMovie';
 import ExploreMovie from './components/movies/ExploreMovie';
 import ScheduleMovie from './components/movies/ScheduleMovie';
 import ExploreTheater from './components/theaters/ExploreTheater';
+import TheaterOverview from './components/theaters/TheaterOverview';
 
 import './App.css';
 
@@ -115,6 +116,14 @@ function App(props: { isAuthenticated: boolean }) {
           redirectPath="/login"
           redirectWhen={RedirectWhen.notAuthenticated}
           component={ExploreTheater}
+        />
+        <RedirectingRoute
+          exact
+          path="/theater-overview"
+          isAuthenticated={isAuthenticated}
+          redirectPath="/login"
+          redirectWhen={RedirectWhen.notAuthenticated}
+          component={TheaterOverview}
         />
         <RedirectingRoute
           exact

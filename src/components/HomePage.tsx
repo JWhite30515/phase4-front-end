@@ -103,14 +103,77 @@ const AdminCustomerView = () => {
 }
 
 const ManagerView = () => {
+  const history = useHistory();
+
   return (
-    <h1>Manager</h1>
+    <div className="flex-column">
+      <h1>Manager</h1>
+      <Link to="/theater-overview">
+        <button>
+          Theater Overview
+        </button>
+      </Link>
+      <Link to="/explore-theater">
+        <button>
+          Explore Theater
+        </button>
+      </Link>
+      <Link to="/schedule-movie">
+        <button>
+          Schedule Movie
+        </button>
+      </Link>
+      <Link to="/visit-history">
+        <button>
+          Visit History
+        </button>
+      </Link>
+      <button onClick={() => history.goBack()}>
+        Back
+      </button>
+    </div>
   );
 }
 
 const ManagerCustomerView = () => {
+  const history = useHistory();
   return (
-    <h1>Manager Customer</h1>
+    <div className="flex-column">
+      <h1>Manager-Customer</h1>
+      <Link to="/theater-overview">
+        <button>
+          Theater Overview
+        </button>
+      </Link>
+      <Link to="/explore-theater">
+        <button>
+          Explore Theater
+        </button>
+      </Link>
+      <Link to="/explore-movie">
+        <button>
+          Explore Movie
+        </button>
+      </Link>
+      <Link to="/schedule-movie">
+        <button>
+          Schedule Movie
+        </button>
+      </Link>
+      <Link to="/view-history">
+        <button>
+          View History
+        </button>
+      </Link>
+      <Link to="/visit-history">
+        <button>
+          Visit History
+        </button>
+      </Link>
+      <button onClick={() => history.goBack()}>
+        Back
+      </button>
+    </div>
   );
 }
 

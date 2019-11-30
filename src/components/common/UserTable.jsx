@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import DatePicker from 'react-datepicker';
 import { useTable, useFilters, useRowSelect, useSortBy } from "react-table";
 
 import { UserStatus } from '../../redux/state/UserState';
@@ -83,6 +84,52 @@ export function SelectColumnFilter({
   );
 }
 
+export function DateRangeColumnFilter({
+  column: { filterValue = [], preFilteredRows, setFilter, id }
+}) {
+  const [min, max] = React.useMemo(() => {
+    let min = preFilteredRows.length ? new Date(preFilteredRows[0].values[id]) : 0;
+    let max = preFilteredRows.length ? new Date(preFilteredRows[0].values[id]) : 0;
+    preFilteredRows.forEach(row => {
+      const currVal = new Date(row.values[id]);
+      min = currVal < min ? currVal : min;
+      max = currVal > max ? currVal : max;
+    });
+    return [min, max];
+  }, [id, preFilteredRows]);
+
+
+  return (
+    <div
+      style={{
+        display: "flex"
+      }}
+    >
+      <DatePicker
+        value={filterValue[0] || min}
+        selected={filterValue[0] || min}
+        onChange={date => {
+          setFilter((old = []) => [
+            date,
+            old[1]
+          ]);
+        }}
+      />
+      to
+      <DatePicker
+        value={filterValue[1] || max}
+        selected={filterValue[1] || max}
+        onChange={date => {
+          setFilter((old = []) => [
+            old[0],
+            date,
+          ]);
+        }}
+      />
+    </div>
+  );
+}
+
 // This is a custom UI for our 'between' or number range
 // filter. It uses two number boxes and filters rows to
 // ones that have values between the two
@@ -114,6 +161,7 @@ export function NumberRangeColumnFilter({
             val ? parseInt(val, 10) : undefined,
             old[1]
           ]);
+          console.log(filterValue);
         }}
         placeholder={`Min (${min})`}
         style={{
