@@ -27,11 +27,18 @@ export function login(loginForm: { username: string, password: string }) {
         dispatch(authSuccess(user, type, creditCards));
       } else {
         t.error('Login failed');
-        dispatch(authFailure())
+        dispatch(logout())
       }
     } catch (e) {
       console.error(e);
     }
+  }
+}
+
+export function logout() {
+  t.info('Logged out');
+  return {
+    type: keys.LOG_OUT,
   }
 }
 
@@ -93,11 +100,5 @@ export function authSuccess(user: IUser, userType: UserType, creditCards: ICredi
     userType,
     user,
     creditCards,
-  }
-}
-
-export function authFailure() {
-  return {
-    type: keys.AUTH_FAILURE,
   }
 }

@@ -32,6 +32,7 @@ function ExploreMovie(props: IExploreMovieProps) {
       await props.getMoviePlays();
     }
     wrap();
+    // eslint-disable-next-line
   }, []);
 
   const [creditCard, updateCreditCard] = useState({ label: '', value: '' });
@@ -66,6 +67,16 @@ function ExploreMovie(props: IExploreMovieProps) {
       accessor: 'address',
     },
     {
+      Header: 'City',
+      accessor: 'thCity',
+    },
+    {
+      Header: 'State',
+      accessor: 'thState',
+      Filter: SelectColumnFilter,
+      filter: 'includes'
+    },
+    {
       Header: 'Company',
       accessor: 'comName',
       Filter: SelectColumnFilter,
@@ -90,7 +101,9 @@ function ExploreMovie(props: IExploreMovieProps) {
             const { movPlayDate } = moviePlay;
             return {
               ...moviePlay,
-              thName: thName,
+              thCity,
+              thName,
+              thState,
               address: `${thStreet}, ${thCity}, ${thState} ${thZipcode}`,
               movPlayDate
             }

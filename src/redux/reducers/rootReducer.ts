@@ -22,11 +22,13 @@ const accountReducer: Reducer<IAccountState, AnyAction> = (
         creditCards: action.creditCards,
         isAuthenticated: true,
       };
-    case keys.AUTH_FAILURE:
+    case keys.LOG_OUT:
       return {
         ...state,
+        user: null,
+        userType: null,
         isAuthenticated: false,
-      };
+      }
     default:
       return state;
   }
@@ -86,6 +88,11 @@ const theaterReducer: Reducer<ITheaterState, AnyAction> = (
       return {
         ...state,
         validManagers: action.validManagers
+      }
+    case keys.GET_THEATER_MOVIES_SUCCESS:
+      return {
+        ...state,
+        movies: action.movies,
       }
     default:
       return state;

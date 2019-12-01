@@ -33,7 +33,7 @@ function UserRegister(props: IUserRegisterProps) {
     confirmPassword: null,
   } as IUserForm);
 
-  let registerEnabled = false;
+  let registerDisabled = true;
 
   const {
     username,
@@ -50,7 +50,7 @@ function UserRegister(props: IUserRegisterProps) {
     confirmPassword &&
     password === confirmPassword
   ) {
-    registerEnabled = true;
+    registerDisabled = false;
   }
 
   return (
@@ -101,7 +101,8 @@ function UserRegister(props: IUserRegisterProps) {
           Back
         </button>
         <button
-          disabled={!registerEnabled}
+          className={registerDisabled ? 'disabled' : ''}
+          disabled={registerDisabled}
           onClick={() => props.registerUser(user)}
         >
           Register

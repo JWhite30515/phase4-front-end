@@ -88,10 +88,12 @@ export function DateRangeColumnFilter({
   column: { filterValue = [], preFilteredRows, setFilter, id }
 }) {
   const [min, max] = React.useMemo(() => {
-    let min = preFilteredRows.length ? new Date(preFilteredRows[0].values[id]) : 0;
-    let max = preFilteredRows.length ? new Date(preFilteredRows[0].values[id]) : 0;
+    let min = preFilteredRows.length && preFilteredRows[0].values[id] ?
+      new Date(preFilteredRows[0].values[id] + ' ') : new Date(0);
+    let max = preFilteredRows.length && preFilteredRows[0].values[id] ?
+      new Date(preFilteredRows[0].values[id] + ' ') : new Date(8640000000000000);
     preFilteredRows.forEach(row => {
-      const currVal = new Date(row.values[id]);
+      const currVal = new Date(row.values[id] + ' ');
       min = currVal < min ? currVal : min;
       max = currVal > max ? currVal : max;
     });
@@ -217,8 +219,6 @@ export default function UserTable({ columns, data, updateUserStatus }) {
     useRowSelect,
   );
 
-  const firstPageRows = rows.slice(0, 10);
-
   let approveDisabled = true;
   let declineDisabled = true;
   if (
@@ -280,7 +280,7 @@ export default function UserTable({ columns, data, updateUserStatus }) {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {firstPageRows.map((row, i) => {
+          {rows.map((row, i) => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
@@ -295,7 +295,7 @@ export default function UserTable({ columns, data, updateUserStatus }) {
         </tbody>
       </table>
       <br />
-      <div>Showing the first 20 results of {rows.length} rows</div>
+      <div>Total rows: {rows.length} rows</div>
     </>
   );
 }

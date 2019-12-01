@@ -27,6 +27,7 @@ function ExploreTheater(props: IExploreTheaterProps) {
       await props.getTheaters();
     }
     wrap();
+    // eslint-disable-next-line
   }, []);
 
   const history = useHistory();
@@ -53,6 +54,16 @@ function ExploreTheater(props: IExploreTheaterProps) {
     {
       Header: 'Address',
       accessor: 'address',
+    },
+    {
+      Header: 'City',
+      accessor: 'thCity',
+    },
+    {
+      Header: 'State',
+      accessor: 'thState',
+      Filter: SelectColumnFilter,
+      filter: 'includes'
     },
     {
       Header: 'Company',

@@ -27,9 +27,8 @@ function ViewHistory(props: {
       user && await props.getViewHistory(user);
     }
     wrap();
+    // eslint-disable-next-line
   }, []);
-
-  console.log(views);
 
   const columns = [
     {
@@ -62,7 +61,7 @@ function ViewHistory(props: {
           columns={columns}
           data={views.map(view => ({
             ...view,
-            creditCardNum: (view.creditCardNum && view.creditCardNum.creditCardNum) ?
+            creditCardNum: (view && view.creditCardNum && view.creditCardNum.creditCardNum) ?
               view.creditCardNum.creditCardNum : '',
           }))}
         />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -24,6 +24,7 @@ function VisitHistory(props: IVisitHistoryProps) {
       user && await props.getVisits(user);
     }
     wrap();
+    // eslint-disable-next-line
   }, []);
   const columns = [
     {
@@ -57,7 +58,7 @@ function VisitHistory(props: IVisitHistoryProps) {
         <TableWithFilters
           columns={columns}
           data={visits.map((visit) => {
-            const { thName, thStreet, thCity, thZipcode, thState } = visit.theater as ITheater;
+            const { thStreet, thCity, thZipcode, thState } = visit.theater as ITheater;
 
             return {
               ...visit,

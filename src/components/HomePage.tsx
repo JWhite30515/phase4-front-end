@@ -1,10 +1,12 @@
 import * as React from 'react';
 
 import { connect } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import IRootState from '../redux/state/RootState';
 import { UserType } from '../redux/state/AccountState';
+
+import LogoutButton from '../components/common/LogoutButton';
 
 import '../css/common.css';
 
@@ -55,8 +57,6 @@ const AdminView = () => {
 }
 
 const AdminCustomerView = () => {
-  const history = useHistory();
-
   return (
     <div className="flex-column">
       <h1>Admin Customer</h1>
@@ -95,16 +95,14 @@ const AdminCustomerView = () => {
           View History
         </button>
       </Link>
-      <button onClick={() => history.goBack()}>
-        Back
-      </button>
+      <LogoutButton
+        label={'Back'}
+      />
     </div>
   );
 }
 
 const ManagerView = () => {
-  const history = useHistory();
-
   return (
     <div className="flex-column">
       <h1>Manager</h1>
@@ -128,15 +126,14 @@ const ManagerView = () => {
           Visit History
         </button>
       </Link>
-      <button onClick={() => history.goBack()}>
-        Back
-      </button>
+      <LogoutButton
+        label={'Back'}
+      />
     </div>
   );
 }
 
 const ManagerCustomerView = () => {
-  const history = useHistory();
   return (
     <div className="flex-column">
       <h1>Manager-Customer</h1>
@@ -170,22 +167,62 @@ const ManagerCustomerView = () => {
           Visit History
         </button>
       </Link>
-      <button onClick={() => history.goBack()}>
-        Back
-      </button>
+      <LogoutButton
+        label={'Back'}
+      />
     </div>
   );
 }
 
 const CustomerView = () => {
   return (
-    <h1>Customer</h1>
+    <div className="flex-column">
+      <h1>Customer</h1>
+      <Link to="/explore-theater">
+        <button>
+          Explore Theater
+        </button>
+      </Link>
+      <Link to="/explore-movie">
+        <button>
+          Explore Movie
+        </button>
+      </Link>
+      <Link to="/view-history">
+        <button>
+          View History
+        </button>
+      </Link>
+      <Link to="/visit-history">
+        <button>
+          Visit History
+        </button>
+      </Link>
+      <LogoutButton
+        label={'Back'}
+      />
+    </div>
   );
 }
 
 const UserView = () => {
   return (
-    <h1>User</h1>
+    <div className="flex-column">
+      <h1>User</h1>
+      <Link to="/explore-theater">
+        <button>
+          Explore Theater
+        </button>
+      </Link>
+      <Link to="/visit-history">
+        <button>
+          Visit History
+        </button>
+      </Link>
+      <LogoutButton
+        label={'Back'}
+      />
+    </div>
   );
 }
 

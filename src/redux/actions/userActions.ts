@@ -80,6 +80,7 @@ export function logVisit(visit: ILogVisit) {
   return async (dispatch: any) => {
     try {
       const body = await axios.post(api + '/users/log-visit', { visit });
+      console.log(body);
       t.info('Logged visit!');
     } catch (e) {
       t.error('Failed to log visit');

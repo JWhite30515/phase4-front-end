@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useMemo } from 'react';
+
 import { useTable, useFilters, useRowSelect, useSortBy } from "react-table";
 
 import {
@@ -7,8 +8,8 @@ import {
 
 import '../../css/common.css';
 
-export default function ExploreMovieTable({ columns, data, cardNumber, user, viewMovie }) {
-  const defaultColumn = React.useMemo(
+export default function TheaterOverviewTable({ columns, data }) {
+  const defaultColumn = useMemo(
     () => ({
       // Let's set up our default Filter UI
       Filter: DefaultColumnFilter
@@ -39,44 +40,20 @@ export default function ExploreMovieTable({ columns, data, cardNumber, user, vie
     headerGroups,
     rows,
     prepareRow,
-    selectedFlatRows,
   } = useTable(
     {
       columns,
       data,
       defaultColumn,
-      filterTypes
+      filterTypes,
     },
     useFilters,
     useSortBy,
     useRowSelect,
   );
 
-  const firstPageRows = rows.slice(0, 10);
-
-  let viewDisabled = true;
-  if (
-    selectedFlatRows.length &&
-    selectedFlatRows.length === 1 &&
-    selectedFlatRows[0].original &&
-    cardNumber &&
-    user
-  ) {
-    console.log(selectedFlatRows[0]);
-    viewDisabled = false;
-  }
-
   return (
     <>
-      <button
-        className={viewDisabled ? 'disabled' : ''}
-        disabled={viewDisabled}
-        onClick={() => {
-          viewMovie(selectedFlatRows[0].original, cardNumber, user);
-        }}
-      >
-        View
-      </button>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (
@@ -99,7 +76,7 @@ export default function ExploreMovieTable({ columns, data, cardNumber, user, vie
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {firstPageRows.map((row, i) => {
+          {rows.map((row, i) => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
@@ -114,7 +91,7 @@ export default function ExploreMovieTable({ columns, data, cardNumber, user, vie
         </tbody>
       </table>
       <br />
-      <div>Showing the first 20 results of {rows.length} rows</div>
+      <div>Total rows: {rows.length} rows</div>
     </>
   );
 }

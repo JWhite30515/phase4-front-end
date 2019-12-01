@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
-import TextInput from '../common/TextInput';
 import { scheduleMovie, getMovies } from '../../redux/actions/movieActions';
 import { IMovie } from '../../redux/state/MovieState';
 
@@ -34,6 +33,7 @@ function ScheduleMovie(props: IScheduleMovieProps) {
       await props.getMovies();
     }
     wrap();
+    // eslint-disable-next-line
   }, []);
 
   const { movies, user } = props;

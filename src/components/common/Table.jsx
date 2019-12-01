@@ -55,6 +55,7 @@ export function ExploreTheaterTable({ columns, data, logVisit, user, visitDate }
     }),
     []
   );
+
   const filterTypes = React.useMemo(() => ({
     date: (rows, id, filterValue) => {
       return rows.filter(row => {
@@ -62,7 +63,7 @@ export function ExploreTheaterTable({ columns, data, logVisit, user, visitDate }
 
         if (rowValue === undefined) return true;
     
-        const rowDate = new Date(rowValue);
+        const rowDate = new Date(rowValue + ' ');
 
         let min = filterValue[0] ? filterValue[0] : new Date(0);
         let max = filterValue[1] ? filterValue[1] : new Date(8640000000000000);
@@ -70,7 +71,7 @@ export function ExploreTheaterTable({ columns, data, logVisit, user, visitDate }
         return (rowDate >= min) && (rowDate <= max);
       })
     }
-  }), []);
+  }), [])
 
   const {
     getTableProps,
@@ -180,7 +181,7 @@ export function TableWithFilters({ columns, data }) {
 
         if (rowValue === undefined) return true;
     
-        const rowDate = new Date(rowValue);
+        const rowDate = new Date(rowValue + ' ');
 
         let min = filterValue[0] ? filterValue[0] : new Date(0);
         let max = filterValue[1] ? filterValue[1] : new Date(8640000000000000);
