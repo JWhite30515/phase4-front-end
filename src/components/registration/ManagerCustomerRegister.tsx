@@ -106,7 +106,7 @@ function ManagerCustomerRegister(props: IManagerCustomerRegisterProps) {
         })}
       />
       <TextInput
-        label="Username"
+        label="Username 2"
         name="username"
         onChange={(e) => updateManagerCustomer({
           ...managerCustomer,
