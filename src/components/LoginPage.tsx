@@ -26,7 +26,7 @@ function LoginPage(props: ILoginPageProps) {
   return (
     <div className="flex-column">
       <h1>Atlanta Movie Login</h1>
-      <label>Username</label>
+      <label>Username 2</label>
       <input
         type="text"
         onChange={(e) => setFormValues({

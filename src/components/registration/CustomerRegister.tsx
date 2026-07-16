@@ -138,7 +138,7 @@ function CustomerRegister(props: ICustomerRegisterProps) {
         })}
       />
       <TextInput
-        label="Username"
+        label="Username 2"
         name="username"
         onChange={(e) => updateCustomer({
           ...customer,
