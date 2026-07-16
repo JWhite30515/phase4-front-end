@@ -104,7 +104,7 @@ function ManagerRegister(props: IManagerRegisterProps) {
         })}
       />
       <TextInput
-        label="Username"
+        label="Username33"
         name="username"
         onChange={(e) => updateManager({
           ...manager,
