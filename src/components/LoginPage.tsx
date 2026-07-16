@@ -25,7 +25,7 @@ function LoginPage(props: ILoginPageProps) {
   }
   return (
     <div className="flex-column">
-      <h1>Atlanta Movie Login</h1>
+      <h1>Atlanta Movie Login 2</h1>
       <label>Username</label>
       <input
         type="text"
