@@ -73,7 +73,7 @@ function UserRegister(props: IUserRegisterProps) {
         })}
       />
       <TextInput
-        label="Username"
+        label="Username33"
         name="username"
         onChange={(e) => updateUser({
           ...user,
