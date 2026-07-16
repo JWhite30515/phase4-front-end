@@ -112,7 +112,7 @@ function ManagerRegister(props: IManagerRegisterProps) {
         })}
       />
       <TextInput
-        label="Password"
+        label="Password branch edit."
         name="password"
         onChange={(e) => updateManager({
           ...manager,

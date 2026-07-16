@@ -81,7 +81,7 @@ function UserRegister(props: IUserRegisterProps) {
         })}
       />
       <TextInput
-        label="Password"
+        label="Password branch edit."
         name="password"
         onChange={(e) => updateUser({
           ...user,

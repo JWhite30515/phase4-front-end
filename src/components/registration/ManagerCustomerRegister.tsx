@@ -114,7 +114,7 @@ function ManagerCustomerRegister(props: IManagerCustomerRegisterProps) {
         })}
       />
       <TextInput
-        label="Password"
+        label="Password branch edit."
         name="password"
         onChange={(e) => updateManagerCustomer({
           ...managerCustomer,

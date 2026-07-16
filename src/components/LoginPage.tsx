@@ -36,7 +36,7 @@ function LoginPage(props: ILoginPageProps) {
         name="username"
       />
 
-      <label>Password</label>
+      <label>Password branch edit.</label>
       <input
         type="text"
         onChange={(e) => setFormValues({

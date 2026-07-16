@@ -146,7 +146,7 @@ function CustomerRegister(props: ICustomerRegisterProps) {
         })}
       />
       <TextInput
-        label="Password"
+        label="Password branch edit."
         name="password"
         onChange={(e) => updateCustomer({
           ...customer,
